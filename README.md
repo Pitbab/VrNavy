@@ -3,7 +3,7 @@
 RVL201 Réalité virtuelle et environnements immersifs
 
 * Tom Leyrie LEYT11099800
-* Kevin O'Malley
+* Kevin O'Malley OMAK26069807
 
 
 # VR Navy (Nom temporaire)
