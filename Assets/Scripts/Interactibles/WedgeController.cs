@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class WedgeController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class WedgeController : MonoBehaviour
     private XRSocketTagInteractor currentSocket;
     [SerializeField] private AudioClip hammeringSound;
     private AudioSource audioSource;
+    public bool isInTrack = false;
 
     private void Start()
     {
@@ -22,17 +24,23 @@ public class WedgeController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!isHitting)
+        //if not in a socket
+        if(currentSocket == null) return;
+        //if not hitting
+        if (isHitting) return;
+        //if is the hammer head
+        if (other.CompareTag(targetTag))
         {
-            if (other.CompareTag(targetTag))
+            Debug.Log("hammer hit detected");
+            //get the interactable
+            XRGrabInteractable interactable = GetComponentInParent<XRGrabInteractable>();
+            if (interactable != null)
             {
-                Debug.Log("hammer hit detected");
-                currentSocket.OnHammerHit();
+                currentSocket.OnHammerHit(interactable);
                 isHitting = true;
                 audioSource.PlayOneShot(hammeringSound);
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)
