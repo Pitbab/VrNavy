@@ -9,6 +9,7 @@ public class WaterLevelController : MonoBehaviour
     private float _currentRiseSpeed; // Current water level rise speed
     public SocketCompletionChecker completionChecker; // Reference to the SocketCompletionChecker
     public PumpController pumpController;
+    public HoleController holeController;
     private bool _wasCompleted = false; // Store the previous completion state
     
     private void Start()
@@ -16,6 +17,7 @@ public class WaterLevelController : MonoBehaviour
         _currentRiseSpeed = defaultRiseSpeed;
         completionChecker.OnCompletionStateChanged += OnCompletionStateChanged; // Subscribe to the event
         pumpController.OnPumpActiveStateChanged += OnPumpActiveStateChanged; // Subscribe to the event
+        holeController.OnHolePluggedStateChanged += OnHolePluggedStateChanged; // Subscribe to the event
 
     }
     
@@ -35,6 +37,21 @@ public class WaterLevelController : MonoBehaviour
     
     // Handler for PumpActiveStateChanged event
     private void OnPumpActiveStateChanged(bool isActive)
+    {
+        if (isActive)
+        {
+            // If the pump is active, decrease water level speed
+            _currentRiseSpeed -= 0.04f;
+        }
+        else
+        {
+            // If the pump is inactive, revert to default speed
+            _currentRiseSpeed += 0.04f;
+        }
+    }
+    
+    // Handler for OnHolePluggedStateChanged event
+    private void OnHolePluggedStateChanged(bool isActive)
     {
         if (isActive)
         {
