@@ -214,7 +214,6 @@ namespace UnityEngine.XR.Content.Interaction
 
         void StartGrab(SelectEnterEventArgs args)
         {
-            Debug.Log("Start Grab");
             m_Interactor = args.interactorObject;
 
             m_PositionAngles.Reset();
