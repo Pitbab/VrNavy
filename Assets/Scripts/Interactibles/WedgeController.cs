@@ -43,6 +43,7 @@ public class WedgeController : MonoBehaviour
         }
     }
 
+    //initiates a cooldown for hitting if the hammer is no longer in contact with the collider Once the cooldown ends, hitting will become possible again.
     private void OnTriggerExit(Collider other)
     {
         if (isHitting)
@@ -54,6 +55,7 @@ public class WedgeController : MonoBehaviour
         }
     }
 
+    //use to not spam the OnHitHammer function 
     private void HittingCooldown()
     {
         isHitting = false;
