@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Content.Interaction;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -16,10 +14,12 @@ public class PumpController : MonoBehaviour
     private float startingAngle = 0f;
     private XRKnob knob;
 
+    // Define delegate and event for pump active state change
+    public delegate void PumpActiveStateChanged(bool isActive);
+    public event PumpActiveStateChanged OnPumpActiveStateChanged;
 
     private void Start()
     {
-
         knob = GetComponentInChildren<XRKnob>();
         knob.onValueChange.AddListener(StartTurnWheel);
         knob.selectExited.AddListener(StopGrabbingWheel);
@@ -41,7 +41,6 @@ public class PumpController : MonoBehaviour
         pumpAudioSource.playOnAwake = false;
         pumpAudioSource.clip = ActiveSound;
         pumpAudioSource.loop = true;
-
     }
 
     private void PressButton()
@@ -59,6 +58,9 @@ public class PumpController : MonoBehaviour
             pumpAudioSource.Stop();
             pumpActive = false;
         }
+
+        // Notify subscribers about pump active state change
+        OnPumpActiveStateChanged?.Invoke(pumpActive);
     }
     
     private void StartTurnWheel(float value)
