@@ -12,19 +12,16 @@ public class XRSocketTagInteractor : XRSocketInteractor
 
     public override bool CanHover(IXRHoverInteractable interactable)
     {
-        // if the socket row is not initialized then any wedge can hover on the socket
         if (!isInitialized)
         {
             return base.CanHover(interactable) && interactable.transform.CompareTag(targetTag);
         }
         
-        //else it needs to be the same game object the row was initialized with
         return base.CanHover(interactable) && interactable.transform.CompareTag(targetTag) && trackId == interactable.transform.GetInstanceID();
     }
-    
+
     public override bool CanSelect(IXRSelectInteractable interactable)
     {
-        // if the wedge is not already on a track then it can be selected on on this one 
         WedgeController wedgeController = interactable.transform.GetComponentInChildren<WedgeController>();
         if (wedgeController != null)
         {
@@ -34,9 +31,14 @@ public class XRSocketTagInteractor : XRSocketInteractor
             }
         }
         
-        //else it needs to be the same game object the row was initialized with
         return base.CanSelect(interactable) && interactable.transform.CompareTag(targetTag) && trackId == interactable.transform.GetInstanceID();
         
+    }
+
+    protected override void OnSelectExited(SelectExitEventArgs args)
+    {
+        base.OnSelectExited(args);
+        Debug.Log("exited");
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -45,11 +47,9 @@ public class XRSocketTagInteractor : XRSocketInteractor
         WedgeController wedge = args.interactableObject.transform.GetComponentInChildren<WedgeController>();
         if (wedge != null)
         {
-            //get the socket ref for the wedge
             Debug.Log("wedge in place");
             wedge.SetCurrentSocket(this);
             
-            //if the track wasn't initialized then set the wedge state to "in track" and get its objectID
             if (!isInitialized)
             {
                 wedge.isInTrack = true;
@@ -59,7 +59,6 @@ public class XRSocketTagInteractor : XRSocketInteractor
         }
     }
 
-    //notifies all sockets within the row that only the object with the specified ID is considered valid
     private void SetSocketId(int id)
     {
         foreach (var socket in holeController.sockets)
@@ -73,7 +72,7 @@ public class XRSocketTagInteractor : XRSocketInteractor
     {
         holeController = hole;
     }
-    
+
     public void OnHammerHit(XRBaseInteractable interactable)
     {
         holeController.OnHammerHit(interactable);
