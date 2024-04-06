@@ -12,6 +12,7 @@ public class HoleController : MonoBehaviour
     private int currentSocketIndex;
     private int gameObjectId;
     private bool isPlugged = false;
+    [SerializeField] private List<ParticleSystem> particleSystemList;
     
     // Define delegate and event for isPlugged state change
     public delegate void HolePluggedStateChanged(bool isPlugged);
@@ -55,6 +56,10 @@ public class HoleController : MonoBehaviour
                 isPlugged = true;
                 // Notify subscribers about isPlugged state change
                 OnHolePluggedStateChanged?.Invoke(isPlugged);
+                foreach (var particle in particleSystemList)
+                {
+                    //particle.ve
+                }
             }
         }
 
