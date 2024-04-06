@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using EzySlice;
 using Unity.XR.CoreUtils;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class Slicer : MonoBehaviour
 {
@@ -18,7 +17,6 @@ public class Slicer : MonoBehaviour
         timer = coolDown;
     }
 
-    //probably better to do this with trigger enter and exit 
     private void Update()
     {
 
@@ -57,26 +55,9 @@ public class Slicer : MonoBehaviour
 
     private void MakeItPhysical(GameObject obj)
     {
-
-        MeshCollider mesh = obj.AddComponent<MeshCollider>();
-        mesh.convex = true;
-
-        GameObject parent = new GameObject();
-        parent.transform.position = mesh.bounds.center;
-
-        obj.transform.SetParent(parent.transform);
-        Rigidbody rb = parent.AddComponent<Rigidbody>();
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
-
-        XRGrabInteractable grab = parent.AddComponent<XRGrabInteractable>();
-        grab.movementType = XRBaseInteractable.MovementType.Kinematic;
-        
-        //need to find a way to make it sliceable with interaction layer
-        
-        //obj.layer = LayerMask.NameToLayer("Sliceable");
-        //grab.interactionLayers = InteractionLayerMask.NameToLayer("Sliceable");
-        //parent.layer = LayerMask.NameToLayer("Sliceable");
-        //grab.attachTransform = obj.transform;
+        obj.AddComponent<MeshCollider>().convex = true;
+        obj.AddComponent<Rigidbody>();
+        obj.layer = LayerMask.NameToLayer("Sliceable");
     }
 
     private SlicedHull SliceObject(GameObject obj, Material crossSectionMaterial = null)
