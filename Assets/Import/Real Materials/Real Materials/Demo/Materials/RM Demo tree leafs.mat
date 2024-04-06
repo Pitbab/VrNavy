@@ -23,8 +23,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RM Demo tree leafs
-  m_Shader: {fileID: -6465566751694194690, guid: 4819724840ee9444f9da841b477038ce,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 4819724840ee9444f9da841b477038ce, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_SSR_TRANSPARENT
@@ -44,6 +45,7 @@ Material:
   - TransparentBackface
   - RayTracingPrepass
   - MOTIONVECTORS
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -159,13 +161,14 @@ Material:
     - _StencilRefGBuffer: 10
     - _StencilRefMV: 40
     - _StencilWriteMask: 6
-    - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDepth: 9
     - _StencilWriteMaskDistortionVec: 4
-    - _StencilWriteMaskGBuffer: 14
-    - _StencilWriteMaskMV: 40
+    - _StencilWriteMaskGBuffer: 15
+    - _StencilWriteMaskMV: 41
     - _SubsurfaceScale: 1
     - _SupportDecals: 1
     - _SurfaceType: 0
+    - _Thickness: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
@@ -182,8 +185,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Diffusion_Profile_Asset: {r: -3.698545e+22, g: 20.616848, b: -5.291675e-28,
-        a: -1.3520143e+18}
+    - Diffusion_Profile_Asset: {r: -3.698545e+22, g: 20.616848, b: -5.291675e-28, a: -1.3520143e+18}
     - _Color: {r: 0.8638787, g: 1, b: 0.38039213, a: 1}
     - _DoubleSidedConstants: {r: -1, g: -1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
@@ -202,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 12
+  version: 13
   hdPluginSubTargetMaterialVersions:
     m_Keys: []
     m_Values: 
