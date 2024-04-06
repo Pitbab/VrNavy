@@ -31,6 +31,8 @@ public class HoleController : MonoBehaviour
         sockets[currentSocketIndex].enabled = true;
     }
 
+    public bool GetIsPlugged() { return isPlugged;}
+
     public void OnHammerHit(XRBaseInteractable interactable)
     {
         
@@ -56,10 +58,8 @@ public class HoleController : MonoBehaviour
                 isPlugged = true;
                 // Notify subscribers about isPlugged state change
                 OnHolePluggedStateChanged?.Invoke(isPlugged);
-                foreach (var particle in particleSystemList)
-                {
-                    //particle.ve
-                }
+                EventManager.Instance.OnHoleCompleted?.Invoke();
+
             }
         }
 
