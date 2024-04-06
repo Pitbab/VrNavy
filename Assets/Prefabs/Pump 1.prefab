@@ -1406,6 +1406,7 @@ GameObject:
   - component: {fileID: 6620187291350727905}
   - component: {fileID: 99661037665596619}
   - component: {fileID: 4338660959452121208}
+  - component: {fileID: 662883912913366247}
   m_Layer: 0
   m_Name: Pump 1
   m_TagString: Untagged
@@ -1545,6 +1546,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &662883912913366247
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744957840478563044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.02353, y: 3.1384387, z: 3.8579688}
+  m_Center: {x: -0.054188162, y: 1.0692194, z: -1.4289844}
 --- !u!1 &7288468666032659749
 GameObject:
   m_ObjectHideFlags: 0
