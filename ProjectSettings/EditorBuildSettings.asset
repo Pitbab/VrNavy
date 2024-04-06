@@ -12,5 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Gym.unity
     guid: 319dafa5c80f29f428dc1e0d03f04177
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d5b015449c3ddc2499a04c393d311c9c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ff3a84e4fa5ed6f4cb7b678da8864912, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 3a0a15f6d9a3a8c40b731fd1c248a6c1, type: 2}
