@@ -5,6 +5,9 @@ public class WaterLevelController : MonoBehaviour
 {
 
     public float defaultRiseSpeed = 1f; // Default speed at which the water rises
+    public float HolePlugSpeed = 1f;
+    public float PumpSpeed = 1f;
+    public float BowlSpeed = 1f;
     public float maxHeight = 10f; // Maximum height the water can rise to
     private float _currentRiseSpeed; // Current water level rise speed
     public SocketCompletionChecker completionChecker; // Reference to the SocketCompletionChecker
@@ -29,12 +32,12 @@ public class WaterLevelController : MonoBehaviour
         if (isCompleted)
         {
             // If the completion condition is met, decrease water level speed
-            _currentRiseSpeed -= 0.04f; // Example: decrease speed by half
+            _currentRiseSpeed -= BowlSpeed; // Example: decrease speed by half
         }
         else
         {
             // If the completion condition is not met, revert to default speed
-            _currentRiseSpeed += 0.04f;
+            _currentRiseSpeed += BowlSpeed;
         }
     }
     
@@ -44,12 +47,12 @@ public class WaterLevelController : MonoBehaviour
         if (isActive)
         {
             // If the pump is active, decrease water level speed
-            _currentRiseSpeed -= 0.04f;
+            _currentRiseSpeed -= PumpSpeed;
         }
         else
         {
             // If the pump is inactive, revert to default speed
-            _currentRiseSpeed += 0.04f;
+            _currentRiseSpeed += PumpSpeed;
         }
     }
     
@@ -59,12 +62,12 @@ public class WaterLevelController : MonoBehaviour
         if (isActive)
         {
             // If the pump is active, decrease water level speed
-            _currentRiseSpeed -= 0.09f;
+            _currentRiseSpeed -= HolePlugSpeed;
         }
         else
         {
             // If the pump is inactive, revert to default speed
-            _currentRiseSpeed += 0.09f;
+            _currentRiseSpeed += HolePlugSpeed;
         }
     }
 
