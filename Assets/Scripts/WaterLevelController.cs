@@ -67,6 +67,10 @@ public class WaterLevelController : MonoBehaviour
             _currentRiseSpeed += 0.09f;
         }
     }
+
+    public void PressButton(){
+        startSimulation = true;
+    }
     
     // Update is called once per frame
     void Update()
