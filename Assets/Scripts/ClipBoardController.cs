@@ -10,6 +10,7 @@ public class ClipBoardController : MonoBehaviour
 {
     [SerializeField] private GameObject tutorialTab;
     [SerializeField] private GameObject pumpStep, wedgeStep, bowlStep;
+    [SerializeField] private float videoDistanceThreshold;
     
     private GameObject currentTab;
     
@@ -64,6 +65,72 @@ public class ClipBoardController : MonoBehaviour
         currentTab.SetActive(false);
         currentTab = newTab;
         currentTab.SetActive(true);
+    }
+
+    public void DisplayPumpVideo()
+    {
+        ToggleVideo<PumpController>();
+    }
+
+    public void ShowPumpPosition()
+    {
+        ToggleObjectOutline<PumpController>();
+    }
+
+    public void ShowWedgesPosition()
+    {
+        ToggleObjectOutline<WedgeController>();
+    }
+    
+    public void ShowHolesPosition()
+    {
+        ToggleObjectOutline<HoleController>();
+    }
+
+    private void ToggleVideo<T>() where T : MonoBehaviour
+    {
+        T[] objectsOfType = FindObjectsOfType<T>();
+
+        foreach (T obj in objectsOfType)
+        {
+            VideoController video = obj.GetComponent<VideoController>();
+
+            float dist = Vector3.Distance(video.gameObject.transform.position, gameObject.transform.position);
+
+            if (Mathf.Abs(dist) <= videoDistanceThreshold)
+            {
+                video.ToggleVideo();
+                currentTab.transform.Find("LOG").GetComponent<TMP_Text>().text = "Video is playing";
+            }
+            else
+            {
+                currentTab.transform.Find("LOG").GetComponent<TMP_Text>().text =
+                    "The objective is too far to play the video";
+            }
+
+        }
+    }
+    
+    private void ToggleObjectOutline<T>() where T : MonoBehaviour
+    {
+        
+        T[] objectsOfType = FindObjectsOfType<T>();
+
+        foreach (T obj in objectsOfType)
+        {
+            OutlineController outline = obj.GetComponent<OutlineController>();
+            
+            if (outline.isOn)
+            {
+                outline.RemoveOutline();
+            }
+            else
+            {
+                outline.ActivateOutline("Outline");
+            }
+        }
+        
+
     }
     
 }
