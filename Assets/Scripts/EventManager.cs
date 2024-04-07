@@ -11,6 +11,7 @@ public class EventManager : MonoBehaviour
     public Action OnHoleCompleted;
     public Action<bool> OnAllHoleCompleted;
     public Action<bool> OnBowlCompleted;
+    
 
 
     private void Awake()
