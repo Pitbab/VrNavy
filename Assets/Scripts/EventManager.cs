@@ -11,7 +11,12 @@ public class EventManager : MonoBehaviour
     public Action OnHoleCompleted;
     public Action<bool> OnAllHoleCompleted;
     public Action<bool> OnBowlCompleted;
-    
+    public Action OnAllCompleted;
+    public int totalStepToComplete = 3;
+    private int numberOfStepDone = 0;
+    [SerializeField] private AudioClip CompleteSound, failedSound;
+    private AudioSource audioSource;
+
 
 
     private void Awake()
@@ -24,27 +29,50 @@ public class EventManager : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         OnHoleCompleted += CheckForAllHoleCompletion;
+        OnAllCompleted += CheckForEnd;
     }
 
     private void OnDestroy()
     {
         OnHoleCompleted -= CheckForAllHoleCompletion;
+        OnAllCompleted -= CheckForEnd;
     }
 
     private void CheckForAllHoleCompletion()
     {
 
         HoleController[] holes = FindObjectsOfType<HoleController>();
+        Debug.Log("check for all hole compeleted");
 
         foreach (var hole in holes)
         {
             if (hole.GetIsPlugged() == false)
             {
+                Debug.Log(hole.gameObject + " " + hole.GetIsPlugged());
                 return;
             }
         }
 
-        OnAllHoleCompleted.Invoke(true);
+        OnAllHoleCompleted?.Invoke(true);
+        OnAllCompleted?.Invoke();
+    }
+
+    private void CheckForEnd()
+    {
+        numberOfStepDone++;
+
+        Debug.Log("entered completion check");
+        if (numberOfStepDone >= totalStepToComplete)
+        {
+            audioSource.PlayOneShot(CompleteSound);
+            Debug.Log("you won!");
+        }
+    }
+
+    public void SimulationLost()
+    {
+        audioSource.PlayOneShot(failedSound);
     }
 }

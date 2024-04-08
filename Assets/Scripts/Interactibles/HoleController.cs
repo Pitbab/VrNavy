@@ -15,8 +15,8 @@ public class HoleController : MonoBehaviour
     [SerializeField] private List<ParticleSystem> particleSystemList;
     
     // Define delegate and event for isPlugged state change
-    public delegate void HolePluggedStateChanged(bool isPlugged);
-    public event HolePluggedStateChanged OnHolePluggedStateChanged;
+    //public delegate void HolePluggedStateChanged(bool isPlugged);
+    //public event HolePluggedStateChanged OnHolePluggedStateChanged;
     
     private void Start()
     {
@@ -55,10 +55,17 @@ public class HoleController : MonoBehaviour
                 rb.freezeRotation = true;
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 
-                isPlugged = true;
+
                 // Notify subscribers about isPlugged state change
-                OnHolePluggedStateChanged?.Invoke(isPlugged);
-                EventManager.Instance.OnHoleCompleted?.Invoke();
+                if (!isPlugged)
+                {
+                    //OnHolePluggedStateChanged?.Invoke(isPlugged);
+                    isPlugged = true;
+                    EventManager.Instance.OnHoleCompleted?.Invoke();
+                    interactable.GetComponentInChildren<BoxCollider>().enabled = false;
+
+                }
+
 
             }
         }

@@ -41,7 +41,8 @@ public class SocketCompletionChecker : MonoBehaviour
         if (socket1.interactablesSelected.Count > 0 && socket2.interactablesSelected.Count > 0 && socket3.interactablesSelected.Count > 0)
         {
             isCompleted = true;
-            EventManager.Instance.OnBowlCompleted.Invoke(isCompleted);
+            EventManager.Instance.OnBowlCompleted?.Invoke(isCompleted);
+            EventManager.Instance.OnAllCompleted?.Invoke();
         }
         else
         {
@@ -56,6 +57,7 @@ public class SocketCompletionChecker : MonoBehaviour
             isCompleted = newState;
             // Notify subscribers about completion state change
             OnCompletionStateChanged?.Invoke(isCompleted);
+            EventManager.Instance.OnAllCompleted?.Invoke();
         }
     }
 

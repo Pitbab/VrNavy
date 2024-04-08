@@ -17,6 +17,7 @@ public class WedgeController : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+    
 
     public void SetCurrentSocket(XRSocketTagInteractor socket)
     {

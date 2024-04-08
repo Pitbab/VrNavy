@@ -62,6 +62,7 @@ public class PumpController : MonoBehaviour
         // Notify subscribers about pump active state change
         OnPumpActiveStateChanged?.Invoke(pumpActive);
         EventManager.Instance.OnPumpCompleted?.Invoke(pumpActive);
+        EventManager.Instance.OnAllCompleted?.Invoke();
     }
     
     private void StartTurnWheel(float value)

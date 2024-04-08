@@ -8,6 +8,7 @@ TagManager:
   - Hammer
   - SmallWedge
   - LogText
+  - Clipboard
   layers:
   - Default
   - TransparentFX
