@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 6756611121599076170}
   - component: {fileID: 6756611121599076169}
   - component: {fileID: 6756611121599076168}
+  - component: {fileID: 2028987040011267309}
   m_Layer: 0
   m_Name: BigHole
   m_TagString: Untagged
@@ -274,6 +275,7 @@ MonoBehaviour:
   - {fileID: 3288295052289981087}
   - {fileID: 3288295052150382899}
   - {fileID: 3288295053014983641}
+  particleSystemList: []
 --- !u!114 &6756611121599076171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,6 +292,7 @@ MonoBehaviour:
   - {fileID: 6756611121165150236}
   - {fileID: 6756611121342667298}
   - {fileID: 6756611120601303840}
+  particleSystemList: []
 --- !u!114 &6756611121599076170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +309,7 @@ MonoBehaviour:
   - {fileID: 6756611121100647441}
   - {fileID: 6756611120267333716}
   - {fileID: 6756611120830479484}
+  particleSystemList: []
 --- !u!114 &6756611121599076169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +326,7 @@ MonoBehaviour:
   - {fileID: 6756611120525933614}
   - {fileID: 6756611121186150496}
   - {fileID: 6756611121019510504}
+  particleSystemList: []
 --- !u!114 &6756611121599076168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +343,22 @@ MonoBehaviour:
   - {fileID: 6756611122020944817}
   - {fileID: 6756611121953522640}
   - {fileID: 6756611120650049708}
+  particleSystemList: []
+--- !u!114 &2028987040011267309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288295052312549892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038fc955a3ccbfe408ccde65d315b43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 3288295053123734248}
+  isOn: 0
 --- !u!1 &3288295053014983204
 GameObject:
   m_ObjectHideFlags: 0
