@@ -165,5 +165,10 @@ public class ClipBoardController : MonoBehaviour
         
 
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     
 }
