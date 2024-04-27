@@ -30,6 +30,6 @@ public class DebugColider : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("Collider Size: " + size);
+        Debug.Log("Collider Size: " + size);
     }
 }

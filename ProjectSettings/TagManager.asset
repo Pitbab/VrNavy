@@ -9,6 +9,7 @@ TagManager:
   - SmallWedge
   - LogText
   - Clipboard
+  - Bowl
   layers:
   - Default
   - TransparentFX
