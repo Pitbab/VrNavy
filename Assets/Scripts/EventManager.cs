@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventManager : MonoBehaviour
 {
@@ -74,5 +75,10 @@ public class EventManager : MonoBehaviour
     public void SimulationLost()
     {
         audioSource.PlayOneShot(failedSound);
+    }
+
+    public void GoToSimulationScene()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }

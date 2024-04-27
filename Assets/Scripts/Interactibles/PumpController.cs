@@ -24,7 +24,7 @@ public class PumpController : MonoBehaviour
         knob.onValueChange.AddListener(StartTurnWheel);
         knob.selectExited.AddListener(StopGrabbingWheel);
         
-        XRGripButton button = GetComponentInChildren<XRGripButton>();
+        XRPushButton button = GetComponentInChildren<XRPushButton>();
         button.onPress.AddListener(PressButton);
         
         wheelAudioSource = knob.GetComponent<AudioSource>();
