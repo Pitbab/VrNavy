@@ -13,7 +13,7 @@ public class HoleController : MonoBehaviour
     private int gameObjectId;
     private bool isPlugged = false;
     [SerializeField] private List<ParticleSystem> particleSystemList;
-    
+
     // Define delegate and event for isPlugged state change
     //public delegate void HolePluggedStateChanged(bool isPlugged);
     //public event HolePluggedStateChanged OnHolePluggedStateChanged;
@@ -63,6 +63,12 @@ public class HoleController : MonoBehaviour
                     isPlugged = true;
                     EventManager.Instance.OnHoleCompleted?.Invoke();
                     interactable.GetComponentInChildren<BoxCollider>().enabled = false;
+
+                    //disable all particles systems
+                    foreach (var p in particleSystemList)
+                    {
+                        p.Stop(true);
+                    }
 
                 }
 

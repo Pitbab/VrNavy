@@ -11,10 +11,6 @@ public class WaterLevelController : MonoBehaviour
     public float BowlSpeed = 1f;
     public float maxHeight = 10f; // Maximum height the water can rise to
     private float _currentRiseSpeed; // Current water level rise speed
-    public SocketCompletionChecker completionChecker; // Reference to the SocketCompletionChecker
-    public PumpController pumpController;
-    public HoleController holeController;
-    public HoleController holeController1;
     private bool startSimulation = false;
     private bool _wasCompleted = false; // Store the previous completion state
     
