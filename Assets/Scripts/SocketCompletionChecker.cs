@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using System;
+using System.Collections.Generic;
 
 public class SocketCompletionChecker : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class SocketCompletionChecker : MonoBehaviour
 
     // Event to notify completion state changes
     public event Action<bool> OnCompletionStateChanged;
+    [SerializeField] private List<ParticleSystem> particlesList = new List<ParticleSystem>();
     
     private void Start()
     {
@@ -43,6 +45,10 @@ public class SocketCompletionChecker : MonoBehaviour
             isCompleted = true;
             EventManager.Instance.OnBowlCompleted?.Invoke(isCompleted);
             EventManager.Instance.OnAllCompleted?.Invoke();
+            foreach (var p in particlesList)
+            {
+                p.Stop(true);
+            }
         }
         else
         {
