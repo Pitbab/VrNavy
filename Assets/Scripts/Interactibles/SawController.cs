@@ -25,6 +25,6 @@ public class SawController : MonoBehaviour
     {
         buttonAudioSource.Play();
         slicer.enabled = true;
-        animator.Play("AnimTest");
+        animator.Play("SawAnim");
     }
 }
