@@ -13,6 +13,7 @@ public class SocketCompletionChecker : MonoBehaviour
     // Event to notify completion state changes
     public event Action<bool> OnCompletionStateChanged;
     [SerializeField] private List<ParticleSystem> particlesList = new List<ParticleSystem>();
+    [SerializeField] private AudioSource audioSource;
     
     private void Start()
     {
@@ -49,6 +50,12 @@ public class SocketCompletionChecker : MonoBehaviour
             {
                 p.Stop(true);
             }
+
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
+
         }
         else
         {
