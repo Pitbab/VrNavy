@@ -17,6 +17,7 @@ public class WedgeController : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+    
 
     public void SetCurrentSocket(XRSocketTagInteractor socket)
     {
@@ -50,7 +51,7 @@ public class WedgeController : MonoBehaviour
         {
             if (other.CompareTag(targetTag))
             {
-                Invoke(nameof(HittingCooldown), 0.2f);
+                Invoke(nameof(HittingCooldown), 0.4f);
             }
         }
     }

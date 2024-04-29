@@ -32,22 +32,19 @@ public class ClipBoardController : MonoBehaviour
             OnStepCompleted(pumpStep);
         };
 
-        //still need to set up these with main level
-        /*
         toggle = wedgeStep.GetComponentInChildren<Toggle>();
-        //toggle.SetIsOnWithoutNotify(false);
-        EventManager.Instance.OnAllHoleCompleted += toggle.onValueChanged.Invoke;
-        toggle.onValueChanged.AddListener(_=>OnStepCompleted(wedgeStep));
-        toggle.onValueChanged.AddListener(value =>toggle.isOn = value);
+        EventManager.Instance.OnAllHoleCompleted += value =>
+        {
+            toggle.isOn = value;
+            OnStepCompleted(wedgeStep);
+        };
         
-        /*
         toggle = bowlStep.GetComponentInChildren<Toggle>();
-        //toggle.SetIsOnWithoutNotify(false);
-        EventManager.Instance.OnBowlCompleted += toggle.onValueChanged.Invoke;
-        toggle.onValueChanged.AddListener(_=>OnStepCompleted(bowlStep));
-        toggle.onValueChanged.AddListener(value =>toggle.isOn = value);
-        */
-
+        EventManager.Instance.OnBowlCompleted += value =>
+        {
+            toggle.isOn = value;
+            OnStepCompleted(bowlStep);
+        };
     }
 
     private void OnStepCompleted(GameObject step)
@@ -67,10 +64,32 @@ public class ClipBoardController : MonoBehaviour
         currentTab.SetActive(true);
     }
 
+    #region Toggle video
+
     public void DisplayPumpVideo()
     {
         ToggleVideo<PumpController>();
     }
+    
+    public void DisplayHoleVideo()
+    {
+        ToggleVideo<HoleController>();
+    }
+
+    public void DisplaySawVideo()
+    {
+        ToggleVideo<SawController>();
+    }
+    
+    public void DisplayBowlVideo()
+    {
+        ToggleVideo<SocketCompletionChecker>();
+    }
+
+
+    #endregion
+
+    #region Toggle Outline
 
     public void ShowPumpPosition()
     {
@@ -86,6 +105,20 @@ public class ClipBoardController : MonoBehaviour
     {
         ToggleObjectOutline<HoleController>();
     }
+
+    public void ShowSawPosition()
+    {
+        ToggleObjectOutline<SawController>();
+    }
+    
+    public void ShowBowlPosition()
+    {
+        ToggleObjectOutline<SocketCompletionChecker>();
+    }
+
+    #endregion
+
+
 
     private void ToggleVideo<T>() where T : MonoBehaviour
     {
@@ -131,6 +164,11 @@ public class ClipBoardController : MonoBehaviour
         }
         
 
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
     
 }

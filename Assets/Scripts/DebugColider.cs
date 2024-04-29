@@ -19,12 +19,12 @@ public class DebugColider : MonoBehaviour
             size = collider.bounds.size;
             
             // Print the size to the Unity console
-            Debug.Log("Collider Size: " + size);
+            //Debug.Log("Collider Size: " + size);
         }
         else
         {
             // Print a warning if no Collider is found
-            Debug.LogWarning("No Collider attached to " + gameObject.name);
+            //Debug.LogWarning("No Collider attached to " + gameObject.name);
         }
     }
 

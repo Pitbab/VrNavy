@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using System;
+using System.Collections.Generic;
 
 public class SocketCompletionChecker : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class SocketCompletionChecker : MonoBehaviour
 
     // Event to notify completion state changes
     public event Action<bool> OnCompletionStateChanged;
+    [SerializeField] private List<ParticleSystem> particlesList = new List<ParticleSystem>();
+    [SerializeField] private AudioSource audioSource;
     
     private void Start()
     {
@@ -41,7 +44,18 @@ public class SocketCompletionChecker : MonoBehaviour
         if (socket1.interactablesSelected.Count > 0 && socket2.interactablesSelected.Count > 0 && socket3.interactablesSelected.Count > 0)
         {
             isCompleted = true;
-            EventManager.Instance.OnBowlCompleted.Invoke(isCompleted);
+            EventManager.Instance.OnBowlCompleted?.Invoke(isCompleted);
+            EventManager.Instance.OnAllCompleted?.Invoke();
+            foreach (var p in particlesList)
+            {
+                p.Stop(true);
+            }
+
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
+
         }
         else
         {
@@ -56,6 +70,7 @@ public class SocketCompletionChecker : MonoBehaviour
             isCompleted = newState;
             // Notify subscribers about completion state change
             OnCompletionStateChanged?.Invoke(isCompleted);
+            EventManager.Instance.OnAllCompleted?.Invoke();
         }
     }
 

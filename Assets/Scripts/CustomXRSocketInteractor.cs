@@ -32,22 +32,21 @@ public class CustomXRSocketInteractor : XRSocketInteractor
     bool IsWithinSizeLimits(GameObject objectToCheck)
     {
         Transform childTransform = objectToCheck.transform.Find(firstChildNameToCheck);
-        Debug.Log(childTransform.name);
+
         if (childTransform == null)
         {
-            Debug.Log(childTransform.name);
             // If the first child isn't found, try finding the second child
             childTransform = objectToCheck.transform.Find(secondChildNameToCheck);
         }
 
         if (childTransform != null)
         {
-            Debug.Log("Entered if childTransform != null");
+            //Debug.Log("Entered if childTransform != null");
             Collider childCollider = childTransform.GetComponent<Collider>();
             if (childCollider != null)
             {
                 Vector3 objectSize = childCollider.bounds.size;
-                Debug.Log("Collider Size: " + childCollider.bounds.size);
+                //Debug.Log("Collider Size: " + childCollider.bounds.size);
 
                 // Check if the object size is within the specified min and max size
                 bool widthCheck = objectSize.x >= minSize.x && objectSize.x <= maxSize.x;

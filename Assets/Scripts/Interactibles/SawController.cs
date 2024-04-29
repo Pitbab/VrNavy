@@ -10,6 +10,9 @@ public class SawController : MonoBehaviour
     [SerializeField] private GameObject saw;
     private Slicer slicer;
     private Animation animator;
+
+    [SerializeField]
+    private AudioSource sawAudioSource;
     //private string sliceAnimHash = "SlicerAnim";
 
 
@@ -25,6 +28,7 @@ public class SawController : MonoBehaviour
     {
         buttonAudioSource.Play();
         slicer.enabled = true;
-        animator.Play("AnimTest");
+        animator.Play("SawAnim");
+        sawAudioSource.Play();
     }
 }

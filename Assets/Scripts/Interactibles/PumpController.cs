@@ -13,6 +13,7 @@ public class PumpController : MonoBehaviour
     private bool pumpActive = false;
     private float startingAngle = 0f;
     private XRKnob knob;
+    private bool stepLock = false;
 
     // Define delegate and event for pump active state change
     public delegate void PumpActiveStateChanged(bool isActive);
@@ -24,7 +25,7 @@ public class PumpController : MonoBehaviour
         knob.onValueChange.AddListener(StartTurnWheel);
         knob.selectExited.AddListener(StopGrabbingWheel);
         
-        XRGripButton button = GetComponentInChildren<XRGripButton>();
+        XRPushButton button = GetComponentInChildren<XRPushButton>();
         button.onPress.AddListener(PressButton);
         
         wheelAudioSource = knob.GetComponent<AudioSource>();
@@ -50,7 +51,7 @@ public class PumpController : MonoBehaviour
         if (pipeOpen && !pumpActive)
         {
             //adding a lerp on the volume would be nicer 
-            pumpAudioSource.PlayDelayed(1f);
+            pumpAudioSource.PlayDelayed(0.2f);
             pumpActive = true;
         }
         else
@@ -62,6 +63,14 @@ public class PumpController : MonoBehaviour
         // Notify subscribers about pump active state change
         OnPumpActiveStateChanged?.Invoke(pumpActive);
         EventManager.Instance.OnPumpCompleted?.Invoke(pumpActive);
+        
+        // to not count the pump step multiple times 
+        if (!stepLock)
+        {
+            EventManager.Instance.OnAllCompleted?.Invoke();
+            stepLock = true;
+        }
+
     }
     
     private void StartTurnWheel(float value)

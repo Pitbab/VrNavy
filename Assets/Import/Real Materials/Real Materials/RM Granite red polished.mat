@@ -377,8 +377,8 @@ Material:
     - _2_Layer_offset: {r: -0.15, g: 2, b: 0, a: 0}
     - _2_Layer_tiling: {r: -1.03, g: -1.13, b: 0, a: 0}
     - _3_Diffuse: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColor: {r: 0.066037714, g: 0.058977075, b: 0.058977075, a: 0}
+    - _Color: {r: 0.06603769, g: 0.058977053, b: 0.058977053, a: 0}
     - _ColorGlobal: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _Diffuse_color_tweaking: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
